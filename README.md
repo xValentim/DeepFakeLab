@@ -6,6 +6,39 @@ DeepFakeLab is designed to empower users to seamlessly integrate features into i
 
 ![Generative Demo](images/generative/DeepFakeOverview.png)
 
+## Creating vector feature
+
+In here, we will calculate vector about atribute that we want insert. In this, we calculate Bald vector atribute and will insert in another images. The math about this trick is very simple! First, define your subset with True for your feature C, in another words: 
+
+$$\mathcal{A}_{[C==1]} =\{ {\phi(x) ; X_c == 1}\}$$
+
+Where $\phi(x) = z \in \mathbb{R}^{32}$ (The encoder of my autoencoder). And, the same idea for instances that C is False:
+
+$$\mathcal{B}_{[C==0]} =\{ {\phi(x) ; X_c == 0}\}$$
+
+In this context, we will undersample one of subsets to turn this sentence true: $n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]})$.
+
+Then, we calculate two centroids, for each subsets: 
+
+$$Cm_{A} = \frac{\sum_{x \in A} \phi(x)}{n(\mathcal{A}_{[C==1]})} $$
+
+$$Cm_{B} = \frac{\sum_{x \in B} \phi(x)}{n(\mathcal{B}_{[C==0]})} $$
+
+Finally, we can extract vector atribute:
+
+$$\vec v = \vec Cm_{A} - \vec Cm_{B}$$
+
+So, let's calculate this vector!
+
+
+## Insert feature
+
+In this context, we already have vector feature (yay!), so we can insert feature with this simple math: 
+
+$$FakeImage = \psi(\phi(x) + t \cdot \vec v)$$
+
+Where $x \in B$, $t \in \mathbb{R}$ and $\psi$ is decoder!
+
 ## Key Features
 - Feature Integration: Insert a variety of features into images using advanced generative models.
 
