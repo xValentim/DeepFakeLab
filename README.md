@@ -16,7 +16,9 @@ Where $\phi(x) = z \in \mathbb{R}^{32}$ (The encoder of my autoencoder). And, th
 
 $$\mathcal{B}_{[C==0]} =\{ {\phi(x) ; X_c == 0}\}$$
 
-In this context, we will undersample one of subsets to turn this sentence true: $n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]})$.
+In this context, we will undersample one of subsets to turn this sentence true:
+
+$$n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]})$$.
 
 Then, we calculate two centroids, for each subsets: 
 
