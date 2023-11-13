@@ -10,11 +10,11 @@ DeepFakeLab is designed to empower users to seamlessly integrate features into i
 
 In here, we will calculate vector about atribute that we want insert. In this, we calculate Bald vector atribute and will insert in another images. The math about this trick is very simple! First, define your subset with True for your feature C, in another words: 
 
-$$\mathcal{A}_{[C==1]} =\{ {\phi(x) ; X_c == 1}\}$$
+$$\mathcal{A}_{[C==1]} =\{ {\phi(x) ; x_c == 1}\}$$
 
 Where $\phi(x) = z \in \mathbb{R}^{32}$ (The encoder of my autoencoder). And, the same idea for instances that C is False:
 
-$$\mathcal{B}_{[C==0]} =\{ {\phi(x) ; X_c == 0}\}$$
+$$\mathcal{B}_{[C==0]} =\{ {\phi(x) ; x_c == 0}\}$$
 
 In this context, we will undersample one of subsets to turn this sentence true:
 
@@ -37,7 +37,7 @@ So, let's calculate this vector!
 
 In this context, we already have vector feature (yay!), so we can insert feature with this simple math: 
 
-$$FakeImage = \psi(\phi(x) + t \cdot \vec v)$$
+$$FakeImage = \psi(\phi(x) + \sum_{i} t_i \cdot \vec v_i)$$
 
 Where $x \in B$, $t \in \mathbb{R}$ and $\psi$ is decoder!
 
