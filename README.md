@@ -10,38 +10,28 @@ DeepFakeLab is designed to empower users to seamlessly integrate features into i
 
 In here, we will calculate vector about atribute that we want insert. In this, we calculate Bald vector atribute and will insert in another images. The math about this trick is very simple! First, define your subset with True for your feature C, in another words: 
 
-$$\mathcal{A}_{[C==1]} =\{ {\phi(x) ; x_c == 1}\}$$
 
-\[ \mathcal{A}_{[C==1]} = \{ \phi(x) \,|\, x_c == 1 \} \]
+$$\mathcal{A}_{[C==1]} = \{ \phi(x) \,|\, x_c == 1 \}$$
 
 Where $\phi(x) = z \in \mathbb{R}^{32}$ (The encoder of my autoencoder). And, the same idea for instances that C is False:
 
-$$\mathcal{B}_{[C==0]} =\{ {\phi(x) ; x_c == 0}\}$$
-
-\[ \mathcal{B}_{[C==0]} = \{ \phi(x) \,|\, x_c == 0 \} \]
+$$\mathcal{B}_{[C==0]} = \{ \phi(x) \,|\, x_c == 0 \}$$
 
 In this context, we will undersample one of subsets to turn this sentence true:
 
-$$n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]})$$.
 
-\[ n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]}) \]
+$$ n(\mathcal{A}_{[C==1]}) \approx n(\mathcal{B}_{[C==0]}) $$.
+
 
 Then, we calculate two centroids, for each subsets: 
 
-$$Cm_{A} = \frac{\sum_{x \in A} \phi(x)}{n(\mathcal{A}_{[C==1]})} $$
+$$ Cm_{A} = \frac{\sum_{x \in \mathcal{A}_{[C==1]}} \phi(x)}{n(\mathcal{A}_{[C==1]})} $$
 
-$$Cm_{B} = \frac{\sum_{x \in B} \phi(x)}{n(\mathcal{B}_{[C==0]})} $$
-
-\[ Cm_{A} = \frac{\sum_{x \in \mathcal{A}_{[C==1]}} \phi(x)}{n(\mathcal{A}_{[C==1]})} \]
-\[ Cm_{B} = \frac{\sum_{x \in \mathcal{B}_{[C==0]}} \phi(x)}{n(\mathcal{B}_{[C==0]})} \]
+$$ Cm_{B} = \frac{\sum_{x \in \mathcal{B}_{[C==0]}} \phi(x)}{n(\mathcal{B}_{[C==0]})} $$
 
 Finally, we can extract vector atribute:
 
-
 $$\vec v = \vec Cm_{A} - \vec Cm_{B}$$
-
-\[ \vec{v} = \vec{Cm}_{A} - \vec{Cm}_{B} \]
-
 
 ## 🔮 Insert feature
 
