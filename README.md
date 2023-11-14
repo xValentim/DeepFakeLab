@@ -19,7 +19,7 @@ $$\mathcal{B}_{[C==0]} = \lbrace \phi(x) \,|\, x_c == 0 \rbrace$$
 
 In this context, we will undersample one of subsets to turn this sentence true:
 
-$$ n (\mathcal{A}) \approx n (\mathcal{B}) $$.
+$$ | \mathcal{A} | \approx | \mathcal{B} | $$.
 
 Then, we calculate two centroids, for each subsets: 
 
