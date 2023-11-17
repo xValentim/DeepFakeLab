@@ -11,11 +11,11 @@ DeepFakeLab is designed to empower users to seamlessly integrate features into i
 In here, we will calculate vector about atribute that we want insert. In this, we calculate Bald vector atribute and will insert in another images. The math about this trick is very simple! First, define your subset with True for your feature C, in another words: 
 
 
-$$\mathcal{A}_{[C==1]} = \lbrace \phi(x) \,|\, x_c == 1 \rbrace$$
+$$\mathcal{A}_{[C==1]} = \lbrace \phi(x) | x_c == 1 \rbrace$$
 
 Where $\phi(x) = z \in \mathbb{R}^{32}$ (The encoder of my autoencoder). And, the same idea for instances that C is False:
 
-$$\mathcal{B}_{[C==0]} = \lbrace \phi(x) \,|\, x_c == 0 \rbrace$$
+$$\mathcal{B}_{[C==0]} = \lbrace \phi(x) | x_c == 0 \rbrace$$
 
 In this context, we will undersample one of subsets to turn this sentence true:
 
@@ -47,6 +47,28 @@ Where $x \in B$, $t \in \mathbb{R}$ and $\psi$ is decoder!
 
 - Applications: Go ahead and feel free to explore new application. For example, you can use this technique to create new instances and 
 
+## Neural Networks Architectures 
+
+Basically, we will use Convolutional Variational Autoencoders (VAE), Generative Adversarial Networks (GAN) and Diffusion Models (DM). 
+
+We explore another auxiliar loss functions using sobel filters to capture high frequency feature from images!
+
+$$L_{sobel} = \gamma \cdot |f(I) - f(\psi(\phi(I)))|$$
+
+where $f(I) = \sqrt{(G_x \ast I)^{2} + (G_y \ast I)^{2}}$, and $\gamma \in \mathbb{R}$.
+
+So, if we using VAE architecture, our loss will be:
+
+$$\mathcal{L} = L_{reconstruction} + \text{DKL} + \gamma \cdot L_{sobel}$$
+
+$$\mathcal{L} = |I - \psi(\phi(I))|^{2} -\frac{1}{2} \sum_{i=1}^{N} \left(1 + \log(\sigma_i^2) - \mu_i^2 - \sigma_i^2\right) + \gamma \cdot |f(I) - f(\psi(\phi(I)))|$$
+
+$$\mathcal{L} = |I - \psi(\phi(I))|^{2} + \mathbb{E}_{\phi(z | x)} \left[ \log \frac{\phi(z | x)}{\psi(z)} \right] + \gamma \cdot |f(I) - f(\psi(\phi(I)))|$$
+
+
+
+
+(GAN and DM are still building... ⌛)
 
 ## ❓ How to Use
 
