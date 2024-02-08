@@ -70,6 +70,26 @@ $$\mathcal{L} = |I - \psi(\phi(I))|^{2} + \mathbb{E}_{\phi(z | x)} \left[ \log \
 
 (GAN and DM are still building... ⌛)
 
+## Transitions beetween multiple instances
+
+In this context, we will use a simple trick to create a transition between two instances. The idea is simple:
+
+1. Calculate the vector encode for each instance: $\phi(x_1)$ and $\phi(x_2)$
+2. Create a linear space between these two vectors: $\mathcal{L} = \lbrace \phi(x_1) + \alpha \cdot (\phi(x_2) - \phi(x_1)) | \alpha \in [0, 1] \rbrace$
+3. Pick a subset of $\mathcal{L}$, denoted by $\mathcal{L}_{sub}$ and insert in decoder: $\psi(\mathcal{L}_{sub})$
+4. Finally, we will have a transition between two (or more) instances!
+
+<center>
+    <p>
+        <img src="gifs/output_gif_regular.gif" width="200" height="200" />
+    </p>
+</center>
+
+
+
+
+
+
 ## ❓ How to Use
 
 Explore the capabilities of DeepFakeLab by following the provided tutorials in notebooks. Contribute to the community by sharing your insights, enhancements, or creative projects.
